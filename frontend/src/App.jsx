@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 function App() {
   const [filtroProyectos, setFiltroProyectos] = useState("todos");
@@ -67,28 +68,34 @@ function App() {
       ? proyectos
       : proyectos.filter((p) => p.categoria === filtroProyectos);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setEnviando(true);
-    try {
-      const res = await fetch("http://localhost:5000/api/contacto", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formContacto),
-      });
 
-      if (res.ok) {
+    const serviceID = "service_sbvyxk1";
+    const templateID = "template_1mgmdgp";
+    const publicKey = "AGREGA_AQUI_TU_PUBLIC_KEY"; // <-- Coloca tu Public Key de EmailJS aquí
+
+    const templateParams = {
+      nombre: formContacto.nombre,
+      email: formContacto.email,
+      mensaje: formContacto.mensaje,
+    };
+
+    emailjs
+      .send(serviceID, templateID, templateParams, publicKey)
+      .then(() => {
         setMensajeEnviado(true);
         setFormContacto({ nombre: "", email: "", mensaje: "" });
-      } else {
-        alert("Error al enviar mensaje");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("No se pudo conectar con el servidor backend");
-    } finally {
-      setEnviando(false);
-    }
+        setTimeout(() => setMensajeEnviado(false), 5000);
+      })
+      .catch((error) => {
+        console.error("Error al enviar el mensaje:", error);
+        alert("Ocurrió un error al enviar el mensaje. Inténtalo de nuevo.");
+      })
+      .finally(() => {
+        setEnviando(false);
+      });
   };
 
   return (
@@ -103,7 +110,10 @@ function App() {
             <span>&gt;_ Desarrollador Full Stack</span>
           </a>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium">
-            <a href="#inicio" className="hover:text-[#64ffda] transition-colors">
+            <a
+              href="#inicio"
+              className="hover:text-[#64ffda] transition-colors"
+            >
               Inicio
             </a>
             <a
@@ -156,7 +166,7 @@ function App() {
               href="#contacto"
               className="px-6 py-3 border border-[#64ffda] text-[#64ffda] font-bold rounded hover:bg-[#64ffda]/10 transition-all"
             >
-              Contactar 
+              Contactar
             </a>
           </div>
         </div>
@@ -319,7 +329,8 @@ function App() {
             Ponte en Contacto
           </h2>
           <p className="text-[#8892b0]">
-            Actualmente estoy en búsqueda de oportunidades laborales. ¡Envíame un mensaje!
+            Actualmente estoy en búsqueda de oportunidades laborales. ¡Envíame
+            un mensaje!
           </p>
         </div>
 
