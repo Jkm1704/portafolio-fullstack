@@ -74,7 +74,7 @@ function App() {
 
     const serviceID = "service_sbvyxk1";
     const templateID = "template_1mgmdgp";
-    const publicKey = "AGREGA_AQUI_TU_PUBLIC_KEY"; // <-- Coloca tu Public Key de EmailJS aquí
+    const publicKey = "iv0v-vUKyLR7RYVHo";
 
     const templateParams = {
       nombre: formContacto.nombre,
@@ -110,10 +110,7 @@ function App() {
             <span>&gt;_ Desarrollador Full Stack</span>
           </a>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium">
-            <a
-              href="#inicio"
-              className="hover:text-[#64ffda] transition-colors"
-            >
+            <a href="#inicio" className="hover:text-[#64ffda] transition-colors">
               Inicio
             </a>
             <a
@@ -166,7 +163,7 @@ function App() {
               href="#contacto"
               className="px-6 py-3 border border-[#64ffda] text-[#64ffda] font-bold rounded hover:bg-[#64ffda]/10 transition-all"
             >
-              Contactar
+              Contactar 
             </a>
           </div>
         </div>
@@ -329,8 +326,7 @@ function App() {
             Ponte en Contacto
           </h2>
           <p className="text-[#8892b0]">
-            Actualmente estoy en búsqueda de oportunidades laborales. ¡Envíame
-            un mensaje!
+            Actualmente estoy en búsqueda de oportunidades laborales. ¡Envíame un mensaje!
           </p>
         </div>
 
