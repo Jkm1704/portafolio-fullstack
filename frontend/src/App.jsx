@@ -73,7 +73,7 @@ function App() {
     setEnviando(true);
 
     const serviceID = "service_sbvyxk1";
-    const templateID = "template_1mgmdgp";
+    const templateID = "template_kg374zl";
     const publicKey = "iv0v-vUKyLR7RYVHo";
 
     const templateParams = {
